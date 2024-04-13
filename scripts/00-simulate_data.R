@@ -3,7 +3,7 @@
 # Author: Tam Ly
 # Date: 18 April 2024
 # Contact: annatn.ly@mail.utoronto.ca
-# Pre-requisites: None
+# Pre-requisites: Run 000-install_packages
 # Any other information needed? None
 
 
