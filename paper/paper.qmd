@@ -36,7 +36,7 @@ beyonce_cleaned = read_parquet(
 #Read in model
 beyonce_pois <- readRDS(file = here::here("models/beyonce_pois.rds"))
 beyonce_nbinom <- readRDS(file = here::here("models/beyonce_nbinom.rds"))
-
+beyonce_nbinom_default <- readRDS(file = here::here("models/beyonce_nbinom_default.rds"))
 ```
 
 
@@ -133,16 +133,16 @@ pp_check(beyonce_nbinom) +
 
 ## Posterior predictive check
 
-In @fig-posteriorvsprior we compare the posterior with the prior. @fig-posteriorvsprior-1 suggests that there is an issue with the default prior we specified for $\alpha$. Our re-specified model in @fig-posteriorvsprior-2 shows that it does a better job of fitting the data.
+We compare the posterior with the prior. @fig-posteriorvsprior-1 suggests that there is an issue with the default prior we specified for $\alpha$. Our re-specified model in @fig-posteriorvsprior-2 shows that it does a better job of fitting the data.
 
 ```{r}
 #| eval: true
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-ppcheckandposteriorvsprior
+#| label: fig-posteriorvsprior
 #| fig-cap: "Comparing the posterior with the prior"
-#| #| fig-subcap: ["Default priors", "Re-specified priors"]
+#| fig-subcap: ["Default priors", "Re-specified priors"]
 #| layout-ncol: 2
 
 posterior_vs_prior(beyonce_nbinom_default) +
