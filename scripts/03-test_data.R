@@ -3,7 +3,7 @@
 # Author: Tam Ly
 # Date: 18 April 2024
 # Contact: annatn.ly@mail.utoronto.ca
-# Pre-requisites: Run 02-data_cleaning and 04-model
+# Pre-requisites: Run 02-data_cleaning.R and 04-model.R
 # Any other information needed? None
 
 

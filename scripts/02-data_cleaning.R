@@ -3,7 +3,7 @@
 # Author: Tam Ly
 # Date: 18 April 2024
 # Contact: annatn.ly@mail.utoronto.ca
-# Pre-requisites: Run 01-download_data
+# Pre-requisites: Run 01-download_data.R
 # Any other information needed? None
 
 #### Workspace setup ####
