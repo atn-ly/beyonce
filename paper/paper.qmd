@@ -1,6 +1,5 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
+title: "Beyoncé"
 author: Tam Ly
 thanks: "Code and data are available at: [https://github.com/atn-ly/beyonce](https://github.com/atn-ly/beyonce)"
 date: today
@@ -46,11 +45,48 @@ beyonce_nbinom_default <- readRDS(file = here::here("models/beyonce_nbinom_defau
 
 # Data {#sec-data}
 
-## Source
+## Source and Methodology
 
-## Methodology
+The dataset used in this paper was created using data gathered from Spotify [@spotify] and Billboard [@Billboard]. The data was collected for the purpose of this paper to investigate the number of Spotify streams based on weeks spent on the *Billboard Hot 100* for Beyoncé songs. Song titles, album titles, and the number of Spotify streams were collected from Spotify [@spotify], while weeks spent on the *Billboard Hot 100* were collected from Billboard [@Billboard]. There were no similar datasets available that could have been used.
+
+We analyzed the data in R [@citeR] using the following packages: `arrow` [@arrow], `ggplot2` [@ggplot2], `here` [@here], `janitor` [@janitor], `kable` [@kable], `knitr` [@knitr], `marginaleffects` [@marginaleffects], `modelsummary` [@modelsummary], `rstanarm` [@rstanarm], `scales` [@scales], and `tidyverse` [@tidyverse].
 
 ## Variables
+
+There are 4 variables in this dataset:
+
+1. `song` which represents the song titles,
+2. `album` which represents the album titles,
+3. `spotify_streams` which represents the number of Spotify streams, and
+4. `wks_on_chart` which represents the number of weeks spent on the *Billboard Hot 100*.
+
+@tbl-variables shows a sample of the dataset with all the variables and the first 10 out of 140 observations.
+
+```{r}
+#| echo: false
+#| label: tbl-variables
+#| tbl-cap: "Sample of the cleaned dataset with the first 10 observations"
+
+beyonce_cleaned |>
+  slice(1:10) |>
+  kable(
+    col.names = c("Song", "Album", "Spotify Streams", "Weeks on Chart")
+  )
+```
+
+@fig-variables summarizes the data with all 140 observations. We see a positive correlation between the number of Spotify streams and weeks spent on the *Billboard Hot 100*.
+
+```{r}
+#| echo: false
+#| label: fig-variables
+#| fig-cap: "Relationship between the number of Spotify streams and weeks spent on the *Billboard Hot 100* for Beyoncé songs"
+
+beyonce_cleaned |>
+  ggplot(mapping = aes(x = wks_on_chart, y = spotify_streams, color = fct_inorder(album))) +
+  geom_point() +
+  theme_minimal() +
+  labs(x = "Weeks on Chart", y = "Spotify Streams", color = "Album")
+```
 
 ## Measurement
 
@@ -73,22 +109,22 @@ y_i|\mu_i,r &\sim \mbox{NegBinom}(\mu_i, r) \\
 
 Where:
 
-* $y_i$ is the outcome variable, representing the number of Spotify streams for song $i$, 
+* $y_i$ is the outcome variable, representing the number of Spotify streams for song $i$,
 * $\mu_i$ is a parameter for the negative binomial distribution, representing the probability of success in a single trial,
 * $r$ is a parameter for the negative binomial distribution, representing the number of successes,
 * $\mbox{Number of weeks}_i$ is the predictor variable, representing the number of weeks spent on the Billboard Hot 100 for song $i$,
-* $\alpha$ is a parameter, representing the intercept with a specified prior probability distribution that is Normal with a mean of 18 and standard deviation of 2.5,
+* $\alpha$ is a parameter, representing the intercept with a specified prior probability distribution that is Normal with a mean of 18 and standard deviation of 2.5, and 
 * $\beta$ is a parameter, representing the slope coefficient with a default prior probability distribution that is Normal with a mean of 0 and standard deviation of 2.5.
 
 ## Model justification
 
-We expect a positive relationship between the number of Spotify streams and weeks spent on the *Billboard Hot 100* based on the positive correlation we observed in the graph in @sec-data. 
+We expect a positive relationship between the number of Spotify streams and weeks spent on the *Billboard Hot 100* based on the positive correlation in the graph that we observed in @sec-data. 
 
 Negative binomial regression operates under several assumptions. It assumes linearity between the outcome and predictor variables, independence of observations, and no multicollinearity. 
 
 We considered Poisson regression as an alternative model since it is also used for count data. However, one of the restrictions with Poisson regression is that it assumes equal mean and variance. Negative binomial regression relaxes this assumption to allow for over-dispersion. We fitted both and compared them using posterior predictive checks in @fig-modelcomparison. We see that the negative binomial approach does a better job of fitting the data.
 
-We considered additional model checking and diagnostic issues. Details and graphs can be found in @sec-model-details.
+We implemented additional model checking and diagnostic issues. Details and graphs can be found in @sec-model-details.
 
 ```{r}
 #| eval: true
@@ -160,9 +196,7 @@ posterior_vs_prior(beyonce_nbinom) +
 
 ## Diagnostics
 
-@fig-diagnostics-1 is a trace plot and it shows that there are no horizontal lines that appear to bounce around and have a nice overlap between the chains. This suggests that there are no problems.
-
-@fig-diagnostics-2 is a Rhat plot and it shows that everything is close to 1 and no more than 1.1. This suggests that there are no problems.
+@fig-diagnostics-1 is a trace plot and it shows that there are no horizontal lines that appear to bounce around and have a nice overlap between the chains. @fig-diagnostics-2 is a Rhat plot and it shows that everything is close to 1 and no more than 1.1. This suggests that there are no problems in both.
 
 ```{r}
 #| echo: false
