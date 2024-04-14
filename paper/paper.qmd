@@ -77,12 +77,29 @@ Where:
 * $\mu_i$ is a parameter for the negative binomial distribution, representing the probability of success in a single trial,
 * $r$ is a parameter for the negative binomial distribution, representing the number of successes,
 * $\mbox{Number of weeks}_i$ is the predictor variable, representing the number of weeks spent on the Billboard Hot 100 for song $i$,
-* $\alpha$ is a parameter, representing the intercept with a default prior probability distribution that is Normal with a mean of 0 and standard deviation of 2.5,
+* $\alpha$ is a parameter, representing the intercept with a specified prior probability distribution that is Normal with a mean of 18 and standard deviation of 2.5,
 * $\beta$ is a parameter, representing the slope coefficient with a default prior probability distribution that is Normal with a mean of 0 and standard deviation of 2.5.
 
 ## Model justification
 
+We expect a positive relationship between the number of Spotify streams and weeks spent on the *Billboard Hot 100* based on the positive correlation we observed in the graph in @sec-data. 
+
+Negative binomial regression operates under several assumptions. It assumes linearity between the outcome and predictor variables, independence of observations, and no multicollinearity. 
+
+We considered Poisson regression as an alternative model since it is also used for count data. However, one of the restrictions with Poisson regression is that it assumes equal mean and variance. Negative binomial regression relaxes this assumption to allow for over-dispersion. We fitted both and compared them using posterior predictive checks in @fig-modelcomparison. We see that the negative binomial approach does a better job of fitting the data.
+
+We considered additional model checking and diagnostic issues. Details and graphs can be found in @sec-model-details.
+
 ```{r}
+#| eval: true
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-modelcomparison
+#| layout-ncol: 2
+#| fig-cap: "Comparing posterior prediction checks for Poisson and negative binomial models"
+#| fig-subcap: ["Poisson model", "Negative binomial model"]
+
 pp_check(beyonce_pois) +
   theme(legend.position = "bottom")
 
@@ -116,8 +133,51 @@ pp_check(beyonce_nbinom) +
 
 ## Posterior predictive check
 
+In @fig-posteriorvsprior we compare the posterior with the prior. @fig-posteriorvsprior-1 suggests that there is an issue with the default prior we specified for $\alpha$. Our re-specified model in @fig-posteriorvsprior-2 shows that it does a better job of fitting the data.
+
+```{r}
+#| eval: true
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-ppcheckandposteriorvsprior
+#| fig-cap: "Comparing the posterior with the prior"
+#| #| fig-subcap: ["Default priors", "Re-specified priors"]
+#| layout-ncol: 2
+
+posterior_vs_prior(beyonce_nbinom_default) +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "bottom") +
+  coord_flip()
+
+posterior_vs_prior(beyonce_nbinom) +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "bottom") +
+  coord_flip()
+```
+
 ## Diagnostics
 
+@fig-diagnostics-1 is a trace plot and it shows that there are no horizontal lines that appear to bounce around and have a nice overlap between the chains. This suggests that there are no problems.
+
+@fig-diagnostics-2 is a Rhat plot and it shows that everything is close to 1 and no more than 1.1. This suggests that there are no problems.
+
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: fig-diagnostics
+#| fig-cap: "Checking the convergence of the MCMC algorithm"
+#| fig-subcap: ["Trace plot", "Rhat plot"]
+#| layout-ncol: 2
+
+plot(beyonce_nbinom, "trace")
+
+plot(beyonce_nbinom, "rhat")
+```
 
 
 \newpage

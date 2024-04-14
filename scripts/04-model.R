@@ -23,11 +23,21 @@ beyonce_pois <-
     data = beyonce_cleaned,
     family = poisson(link = "log"),
     prior = normal(location = 0, scale = 2.5, autoscale = TRUE),
-    prior_intercept = normal(location = 0, scale = 2.5, autoscale = TRUE),
+    prior_intercept = normal(location = 18, scale = 2.5, autoscale = TRUE),
     seed = 302
   )
 
 beyonce_nbinom <-
+  stan_glm(
+    spotify_streams ~ wks_on_chart,
+    data = beyonce_cleaned,
+    family = neg_binomial_2(link = "log"),
+    prior = normal(location = 0, scale = 2.5, autoscale = TRUE),
+    prior_intercept = normal(location = 18, scale = 2.5, autoscale = TRUE),
+    seed = 302
+  )
+
+beyonce_nbinom_default <-
   stan_glm(
     spotify_streams ~ wks_on_chart,
     data = beyonce_cleaned,
@@ -46,4 +56,9 @@ saveRDS(
 saveRDS(
   beyonce_nbinom,
   file = "models/beyonce_nbinom.rds"
+)
+
+saveRDS(
+  beyonce_nbinom_default,
+  file = "models/beyonce_nbinom_default.rds"
 )
