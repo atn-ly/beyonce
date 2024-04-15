@@ -83,7 +83,7 @@ beyonce_cleaned |>
 
 beyonce_cleaned |>
   ggplot(mapping = aes(x = wks_on_chart, y = spotify_streams, color = fct_inorder(album))) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   theme_minimal() +
   labs(x = "Weeks on Chart", y = "Spotify Streams", color = "Album")
 ```
@@ -152,6 +152,16 @@ pp_check(beyonce_nbinom) +
 
 # Results {#sec-results}
 
+```{r}
+#| echo: false
+#| label: fig-prediction
+#| fig-cap: "The predicted number of Spotify streams for a Beyoncé song based on the number of weeks spent on the *Billboard Hot 100*"
+
+plot_predictions(beyonce_nbinom, condition = "wks_on_chart") +
+  labs(x = "Weeks on Chart",
+       y = "Spotify Streams") +
+  theme_classic()
+```
 
 
 # Discussion {#sec-discussion}
