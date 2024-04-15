@@ -16,16 +16,15 @@ toc: true
 #| message: false
 #| warning: false
 
-library(tidyverse)
-library(rstanarm)
-library(knitr)
-library(here)
-library(ggplot2)
 library(arrow)
-library(scales)
-library(modelsummary)
-library(marginaleffects)
 library(broom.mixed)
+library(ggplot2)
+library(here)
+library(knitr)
+library(marginaleffects)
+library(modelsummary)
+library(rstanarm)
+library(tidyverse)
 
 #Read in data
 beyonce_cleaned = read_parquet(
@@ -62,7 +61,7 @@ Lastly, we collected data on the number of weeks each song spent on the *Billboa
 
 ## Methodology
 
-We analyzed the data in R [@citeR] using the following packages: `arrow` [@arrow], `broom.mixed` [@broommixed], `ggplot2` [@ggplot2], `here` [@here], `janitor` [@janitor], `kable` [@kable], `knitr` [@knitr], `marginaleffects` [@marginaleffects], `modelsummary` [@modelsummary], `rstanarm` [@rstanarm], `scales` [@scales], and `tidyverse` [@tidyverse].
+We analyzed the data in R [@citeR] using the following packages: `arrow` [@arrow], `broom.mixed` [@broommixed], `ggplot2` [@ggplot2], `here` [@here], `janitor` [@janitor], `knitr` [@knitr], `marginaleffects` [@marginaleffects], `modelsummary` [@modelsummary], `rstanarm` [@rstanarm], and `tidyverse` [@tidyverse].
 
 ## Variables
 

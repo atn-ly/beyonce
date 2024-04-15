@@ -7,6 +7,7 @@
 # Any other information needed? None
 
 install.packages("arrow")
+install.packages("broom.mixed")
 install.packages("ggplot2")
 install.packages("here")
 install.packages("janitor")
@@ -14,5 +15,4 @@ install.packages("knitr")
 install.packages("marginaleffects")
 install.packages("modelsummary")
 install.packages("rstanarm")
-install.packages("scales")
 install.packages("tidyverse")
