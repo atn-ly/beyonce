@@ -45,9 +45,21 @@ beyonce_nbinom_default <- readRDS(file = here::here("models/beyonce_nbinom_defau
 
 # Data {#sec-data}
 
-## Source and Methodology
+## Sources
 
 The dataset used in this paper was created using data gathered from Spotify [@spotify] and Billboard [@billboard]. The data was collected by the authors for the purpose of this paper to investigate the number of Spotify streams based on weeks spent on the *Billboard Hot 100* for Beyoncé songs. Song titles, album titles, and the number of Spotify streams were collected from Spotify [@spotify], while weeks spent on the *Billboard Hot 100* were collected from Billboard [@billboard]. There were no similar datasets available that could have been used.
+
+## Measurement
+
+First, we used Spotify [@spotify] to collect data on Beyoncé albums. Here, we had to decide which albums to include in our dataset since Beyoncé has 15 different albums in her Spotify discography. We decided to only include her eight studio albums and one soundtrack album and exclude her live albums and compilation albums because these are not as popular. Furthermore, among her eight studio albums, we only looked at the deluxe versions, since these contain the same songs with the same streaming numbers as the standard version along with some additional tracks.
+
+Next, using Spotify [@spotify], we collected data on Beyoncé songs from the nine albums we selected and had to decide which types of tracks to include. Since we are interested in songs that charted, we decided to exclude remixes, extended mixes, Spanish versions, interludes, and original demos that were included in her albums because these are not as popular. Note that we also did not include songs where Beyoncé was a guest feature on another artist’s song.
+
+Then, we used Spotify [@spotify] to collect data on the number of streams for the songs that we selected. Spotify gives one stream to a track if it is played for at least 30 seconds and updates its streaming numbers once a day at approximately 3 PM EST [@spotify]. We collected this data on April 12, 2024 after 3 PM EST.
+
+Lastly, we collected data on the number of weeks each song spent on the *Billboard Hot 100* from Billboard [@billboard]. Billboard keeps a chart history for Beyoncé that includes the debut date, peak position, peak date, and weeks spent for each song that charted on the *Billboard Hot 100*. From this list, we only collected the number of weeks spent on the chart for our selected songs. Billboard updates the *Billboard Hot 100* as well as the artist’s chart history every Tuesday [@billboard]. We collected this data on Friday, April 12, 2024. For songs that did not chart, we recorded them with a 0 in our dataset.
+
+## Methodology
 
 We analyzed the data in R [@citeR] using the following packages: `arrow` [@arrow], `ggplot2` [@ggplot2], `here` [@here], `janitor` [@janitor], `kable` [@kable], `knitr` [@knitr], `marginaleffects` [@marginaleffects], `modelsummary` [@modelsummary], `rstanarm` [@rstanarm], `scales` [@scales], and `tidyverse` [@tidyverse].
 
@@ -87,17 +99,6 @@ beyonce_cleaned |>
   theme_minimal() +
   labs(x = "Weeks on Chart", y = "Spotify Streams", color = "Album")
 ```
-
-## Measurement
-
-First, we used Spotify [@spotify] to collect data on Beyoncé albums. Here, we had to decide which albums to include in our dataset since Beyoncé has 15 different albums in her Spotify discography. We decided to only include her eight studio albums and one soundtrack album and exclude her live albums and compilation albums because these are not as popular. Furthermore, among her eight studio albums, we only looked at the deluxe versions, since these contain the same songs with the same streaming numbers as the standard version along with some additional tracks.
-
-Next, using Spotify [@spotify], we collected data on Beyoncé songs from the nine albums we selected and had to decide which types of tracks to include. Since we are interested in songs that charted, we decided to exclude remixes, extended mixes, Spanish versions, interludes, and original demos that were included in her albums because these are not as popular. Note that we also did not include songs where Beyoncé was a guest feature on another artist’s song.
-
-Then, we used Spotify [@spotify] to collect data on the number of streams for the songs that we selected. Spotify gives one stream to a track if it is played for at least 30 seconds and updates its streaming numbers once a day at approximately 3 PM EST [@spotify]. We collected this data on April 12, 2024 after 3 PM EST.
-
-Lastly, we collected data on the number of weeks each song spent on the *Billboard Hot 100* from Billboard [@billboard]. Billboard keeps a chart history for Beyoncé that includes the debut date, peak position, peak date, and weeks spent for each song that charted on the *Billboard Hot 100*. From this list, we only collected the number of weeks spent on the chart for our selected songs. Billboard updates the *Billboard Hot 100* as well as the artist’s chart history every Tuesday [@billboard]. We collected this data on Friday, April 12, 2024. For songs that did not chart, we recorded them with a 0 in our dataset.
-
 
 # Model {#sec-model}
 
@@ -151,6 +152,14 @@ pp_check(beyonce_nbinom) +
 ```
 
 # Results {#sec-results}
+
+```{r}
+modelsummary(
+  list(
+    "Spotify Streams" = beyonce_nbinom
+  )
+)
+```
 
 ```{r}
 #| echo: false
