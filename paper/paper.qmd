@@ -13,8 +13,8 @@ toc: true
 
 ```{r}
 #| include: false
-#| warning: false
 #| message: false
+#| warning: false
 
 library(tidyverse)
 library(rstanarm)
@@ -25,6 +25,7 @@ library(arrow)
 library(scales)
 library(modelsummary)
 library(marginaleffects)
+library(broom.mixed)
 
 #Read in data
 beyonce_cleaned = read_parquet(
@@ -61,7 +62,7 @@ Lastly, we collected data on the number of weeks each song spent on the *Billboa
 
 ## Methodology
 
-We analyzed the data in R [@citeR] using the following packages: `arrow` [@arrow], `ggplot2` [@ggplot2], `here` [@here], `janitor` [@janitor], `kable` [@kable], `knitr` [@knitr], `marginaleffects` [@marginaleffects], `modelsummary` [@modelsummary], `rstanarm` [@rstanarm], `scales` [@scales], and `tidyverse` [@tidyverse].
+We analyzed the data in R [@citeR] using the following packages: `arrow` [@arrow], `broom.mixed` [@broommixed], `ggplot2` [@ggplot2], `here` [@here], `janitor` [@janitor], `kable` [@kable], `knitr` [@knitr], `marginaleffects` [@marginaleffects], `modelsummary` [@modelsummary], `rstanarm` [@rstanarm], `scales` [@scales], and `tidyverse` [@tidyverse].
 
 ## Variables
 
@@ -76,6 +77,9 @@ There are 4 variables in this dataset:
 
 ```{r}
 #| echo: false
+#| eval: true
+#| message: false
+#| warning: false
 #| label: tbl-variables
 #| tbl-cap: "Sample of the cleaned dataset with the first 10 observations"
 
@@ -90,6 +94,9 @@ beyonce_cleaned |>
 
 ```{r}
 #| echo: false
+#| eval: true
+#| message: false
+#| warning: false
 #| label: fig-variables
 #| fig-cap: "Relationship between the number of Spotify streams and weeks spent on the *Billboard Hot 100* for Beyoncé songs"
 
@@ -135,8 +142,8 @@ We considered Poisson regression as an alternative model since it is also used f
 We implemented additional model checking and diagnostic issues. Details and graphs can be found in @sec-model-details.
 
 ```{r}
-#| eval: true
 #| echo: false
+#| eval: true
 #| message: false
 #| warning: false
 #| label: fig-modelcomparison
@@ -151,9 +158,19 @@ pp_check(beyonce_nbinom) +
   theme(legend.position = "bottom")
 ```
 
+
+\newpage
+
 # Results {#sec-results}
 
 ```{r}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: tbl-results
+#| tbl-cap: "Examining the number of Spotify streams for a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100*"
+
 modelsummary(
   list(
     "Spotify Streams" = beyonce_nbinom
@@ -163,8 +180,11 @@ modelsummary(
 
 ```{r}
 #| echo: false
-#| label: fig-prediction
-#| fig-cap: "The predicted number of Spotify streams for a Beyoncé song based on the number of weeks spent on the *Billboard Hot 100*"
+#| eval: true
+#| message: false
+#| warning: false
+#| label: fig-results
+#| fig-cap: "The predicted number of Spotify streams for a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100*"
 
 plot_predictions(beyonce_nbinom, condition = "wks_on_chart") +
   labs(x = "Weeks on Chart",
@@ -198,8 +218,8 @@ plot_predictions(beyonce_nbinom, condition = "wks_on_chart") +
 We compare the posterior with the prior. @fig-posteriorvsprior-1 suggests that there is an issue with the default prior we specified for $\alpha$. Our re-specified model in @fig-posteriorvsprior-2 shows that it does a better job of fitting the data.
 
 ```{r}
-#| eval: true
 #| echo: false
+#| eval: true
 #| message: false
 #| warning: false
 #| label: fig-posteriorvsprior
