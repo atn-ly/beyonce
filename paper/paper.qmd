@@ -4,7 +4,7 @@ author: Tam Ly
 thanks: "Code and data are available at: [https://github.com/atn-ly/beyonce](https://github.com/atn-ly/beyonce)"
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "This paper analyzes the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100* utilizing data collected from Spotify and Billboard. We find that the number of Spotify streams of a Beyoncé song increases as its duration on the *Billboard Hot 100* increases. Our discovery highlights the relevance of charts in shaping the music industry."
 format: pdf
 number-sections: true
 bibliography: references.bib
