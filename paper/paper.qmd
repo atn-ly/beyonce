@@ -4,7 +4,7 @@ author: Tam Ly
 thanks: "Code and data are available at: [https://github.com/atn-ly/beyonce](https://github.com/atn-ly/beyonce)"
 date: today
 date-format: long
-abstract: "This paper analyzes the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100* utilizing data collected from Spotify and Billboard. We find that the number of Spotify streams of a Beyoncé song increases as its duration on the *Billboard Hot 100* increases. Our discovery highlights the relevance of charts in shaping the music industry."
+abstract: "This paper analyzes the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100* utilizing data collected from Spotify and Billboard. We find that the number of Spotify streams of a Beyoncé song increases as its duration on the *Billboard Hot 100* increases. Our discovery highlights the relevance of charts in shaping today’s music industry."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -41,7 +41,7 @@ beyonce_nbinom_default <- readRDS(file = here::here("models/beyonce_nbinom_defau
 
 # Introduction
 
-
+Beyoncé Giselle Knowles-Carter is a singer, songwriter, producer, dancer, and one of the most successful and influential artists of our time. Over the course of her career, she has won 32 Grammy Awards, sold more than 200 million records, and 106 of her songs have landed on the *Billboard Hot 100* chart. The *Billboard Hot 100* is a music ranking system that showcases 100 of the most popular songs in the United States. Although the exact formulas behind its calculation remain unknown to the public, the two main components are radio and song sales. Listeners can stream these hits on Spotify. With more than 602 million users, it is the world’s most popular audio streaming subscription service. 
 
 # Data {#sec-data}
 

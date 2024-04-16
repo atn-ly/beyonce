@@ -2,7 +2,7 @@
 
 ## Overview
 
-This paper analyzes the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100* utilizing data collected from Spotify and Billboard. We find that the number of Spotify streams of a Beyoncé song increases as its duration on the *Billboard Hot 100* increases. Our discovery highlights the relevance of charts in shaping the music industry.
+This paper analyzes the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100* utilizing data collected from Spotify and Billboard. We find that the number of Spotify streams of a Beyoncé song increases as its duration on the *Billboard Hot 100* increases. Our discovery highlights the relevance of charts in shaping today’s music industry.
 
 
 ## File Structure
