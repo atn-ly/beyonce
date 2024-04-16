@@ -8,7 +8,6 @@ abstract: "This paper analyzes the number of Spotify streams of a Beyoncé song 
 format: pdf
 number-sections: true
 bibliography: references.bib
-toc: true
 ---
 
 ```{r}
@@ -41,9 +40,14 @@ beyonce_nbinom_default <- readRDS(file = here::here("models/beyonce_nbinom_defau
 
 # Introduction
 
-Beyoncé Giselle Knowles-Carter is a singer, songwriter, producer, dancer, and one of the most successful and influential artists of our time. Over the course of her career, she has won 32 Grammy Awards, sold beyond 200 million records, and more than 100 of her songs have landed on the *Billboard Hot 100* chart. The *Billboard Hot 100* is a music ranking system that showcases 100 of the most popular songs in the United States each week. Although the exact formula behind its calculation remains unknown to the public, the two main components are radio and song sales. Listeners can stream these hits on Spotify, the world’s most popular audio streaming subscription service.
+Beyoncé Giselle Knowles-Carter is a singer, songwriter, producer, dancer, and one of the most successful and influential artists of our time. Over the course of her career, she has won 32 Grammy Awards, sold beyond 200 million records, and more than 100 of her songs have landed on the *Billboard Hot 100* chart. The *Billboard Hot 100* is a music ranking system that showcases 100 of the most popular songs in the United States each week. Listeners can stream these hits on Spotify, the world’s most popular audio streaming subscription service.
 
-There is a clear gap in knowing what makes a song famous. In the ever-changing music industry, it is not only about melody and lyrics, but also promotion. In this paper, we look at music promotion and the importance of Billboard charting. We analyze the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100*. The estimand is the popularity of a Beyoncé song and this is considered in the number of Spotify streams.
+There is a clear gap in knowing what makes a song famous. In the ever-changing music industry, it is not only about melody and lyrics, but also promotion. In this paper, we focus on music promotion and the importance of Billboard charting. We analyze the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100*. The estimand is the popularity of a Beyoncé song and this is considered in the number of Spotify streams.
+
+Using data collected from Spotify and Billboard, we found that the number of Spotify streams of a Beyoncé song increases as its duration on the *Billboard Hot 100* increases.
+
+The rest of this paper is structured as follows. @sec-data provides the sources, measurement, methodology, and variables of the dataset. @sec-model provides the model set-up and justification. @sec-results provides the results of the model and @sec-discussion provides a discussion of the results.
+
 
 # Data {#sec-data}
 
@@ -159,8 +163,6 @@ pp_check(beyonce_nbinom) +
   theme(legend.position = "bottom")
 ```
 
-
-\newpage
 
 # Results {#sec-results}
 
