@@ -1,5 +1,5 @@
 ---
-title: "Beyoncé"
+title: "Do music charts still matter in the streaming age? An analysis predicting Beyoncé’s Spotify numbers using a regression model."
 author: Tam Ly
 thanks: "Code and data are available at: [https://github.com/atn-ly/beyonce](https://github.com/atn-ly/beyonce)"
 date: today
