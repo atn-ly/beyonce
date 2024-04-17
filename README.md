@@ -2,7 +2,7 @@
 
 ## Overview
 
-This paper analyzes the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100* utilizing data collected from Spotify and Billboard. We find that the number of Spotify streams of a Beyoncé song increases as its duration on the *Billboard Hot 100* increases. Our discovery highlights the relevance of charts in shaping today’s music industry.
+This paper analyzes the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100* utilizing data collected from Spotify and Billboard. We find that the number of Spotify streams of a Beyoncé song increases as its duration on the *Billboard Hot 100* increases. Our discovery highlights the enduring relevance of charts in shaping today’s music industry.
 
 
 ## File Structure
@@ -19,7 +19,7 @@ The repo is structured as:
 
 ## Statement on LLM usage
 
-Aspects of the code were written with the help of the auto-complete tool, Codriver. The abstract and introduction were written with the help of ChatHorse and the entire chat history is available in inputs/llms/usage.txt.
+No LLMs were used for any aspect of this work.
 
 ## Some checks
 

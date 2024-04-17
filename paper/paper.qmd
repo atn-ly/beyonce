@@ -4,7 +4,7 @@ author: Tam Ly
 thanks: "Code and data are available at: [https://github.com/atn-ly/beyonce](https://github.com/atn-ly/beyonce)"
 date: today
 date-format: long
-abstract: "This paper analyzes the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100* utilizing data collected from Spotify and Billboard. We find that the number of Spotify streams of a Beyoncé song increases as its duration on the *Billboard Hot 100* increases. Our discovery highlights the relevance of charts in shaping today’s music industry."
+abstract: "This paper analyzes the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100* utilizing data collected from Spotify and Billboard. We find that the number of Spotify streams of a Beyoncé song increases as its duration on the *Billboard Hot 100* increases. Our discovery highlights the enduring relevance of charts in shaping today’s music industry."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -40,9 +40,9 @@ beyonce_nbinom_default <- readRDS(file = here::here("models/beyonce_nbinom_defau
 
 # Introduction
 
-Beyoncé Giselle Knowles-Carter is a singer, songwriter, producer, dancer, and one of the most successful and influential artists of our time. Over the course of her career, she has won 32 Grammy Awards, sold beyond 200 million records, and more than 100 of her songs have landed on the *Billboard Hot 100* chart. The *Billboard Hot 100* is a music ranking system that showcases 100 of the most popular songs in the United States each week. Listeners can stream these hits on Spotify, the world’s most popular audio streaming subscription service.
+Beyoncé Giselle Knowles-Carter is a singer, songwriter, producer, dancer, and one of the most successful and influential artists of our time. Over the course of her career, she has won 32 Grammy Awards, sold beyond 200 million records, and more than 100 of her songs have landed on the *Billboard Hot 100* chart. The *Billboard Hot 100* is a music ranking system that is supposed to showcase 100 of the most popular songs in the United States each week. Listeners can stream these hits on Spotify, the world’s most popular audio streaming subscription service.
 
-There is a clear gap in knowing what makes a song famous. In the ever-changing music industry, it is not only about melody and lyrics, but also promotion. In this paper, we focus on music promotion and the importance of Billboard charting. We analyze the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100*. The estimand is the popularity of a Beyoncé song and this is considered in the number of Spotify streams.
+Do Billboard charts actually reflect which songs are most popular? There is a clear gap in knowing what makes a song famous. In the ever-changing music industry, it is not only about melody and lyrics, but also promotion. In this paper, we focus on music promotion and the importance of Billboard charting. We analyze the number of Spotify streams of a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100*. The estimand is the popularity of a Beyoncé song and this is considered in the number of Spotify streams.
 
 Using data collected from Spotify and Billboard, we found that the number of Spotify streams of a Beyoncé song increases as its duration on the *Billboard Hot 100* increases.
 
@@ -196,16 +196,29 @@ plot_predictions(beyonce_nbinom, condition = "wks_on_chart") +
 ```
 
 
+\newpage
+
 # Discussion {#sec-discussion}
 
-## First discussion point
+## Findings
 
-## Second discussion point
+In this paper, we collected and visualized data from Spotify and Billboard as discussed in @sec-data. Then, we used a Bayesian negative binomial regression model as seen in @sec-model to predict the number of Spotify streams for a Beyoncé song based on the number of weeks it spent on the *Billboard Hot 100*. Following our analysis in @sec-results, we found that the number of Spotify streams of a Beyoncé song increased as its duration on the *Billboard Hot 100* increased. We will now discuss the historical context behind Billboard and why huge superstars, such as Beyoncé, still care about charting.
 
-## Third discussion point
+## A bit of history
+
+In the 1940s, Billboard started developing music charts to try and determine the most popular song. This was to help inform people in the music industry, including record stores and jukebox operators, about which records to order. The *Billboard Hot 100* was created in 1958 and has undergone complete upheavals since its inception. How exactly does Billboard determine the most popular song? This has always been the subject of much controversy due to its biased survey methods. Billboard first measured sales by surveying record stores, although it was impossible to know if the store clerks were lying or not. Then, in a book published in the 1970s, co-founder of Casablanca Records, Larry Harris, alleged that industry insiders had heavy influence over the charts. In the 1990s, Billboard began tracking sales based on barcode scans and hip-hop sales seemingly rose dramatically overnight. 
+
+Charts are supposed to reflect the industry’s reality and in 2018, it was announced that the *Billboard Hot 100* would take streaming data into account. However, the exact formula behind Billboard’s calculations remains unknown to the public. We only know that one stream does not necessarily equal one sale and that some streams, such as for on demand services and from paid-tier users, count more than others. By the 2010s, the question of what the Billboard charts actually reflect became even more prevalent after rabid fans proved that it was susceptible to coordinated manipulation.
+
+## Why charts still matter
+
+Do artists as big as Beyoncé still care about music charts? Chart success can bring significant music promotion to an artist’s career. Songs that land on the *Billboard Hot 100* also land on Spotify’s biggest playlists, such as Today’s Top Hits which has almost 35 million followers. Cherie Hu, a music industry analyst at the intersection of music and data has deemed playlists “the new album” and “more powerful than radio” [@cherie]. A placement on Today’s Top Hits can bring up to $163,000 in additional revenue per track. Moreover, for new artists, high positions in the charts can lead to more ownership and creative control in their musical career. This can help explain the importance of why many of Beyoncé’s longest charting songs come from her earlier albums. For more established artists who have a loyal fanbase (even Beyoncé!), charting is essential for maintaining their brand and curtailing any image of a decline. 
 
 ## Weaknesses and next steps
 
+Some weaknesses become apparent in our approach in using Spotify streams as a metric for the popularity of a Beyoncé song. First, one of Beyoncé’s albums, *Lemonade*, was added to Spotify three years after its release. This means that the number of Spotify streams for the songs from this album are underrepresented in our dataset. Furthermore, Spotify numbers are also not immune to industry politics that underlie promotional mechanics. For example, all of the major record labels own a sizable share of Spotify and can give some artists preferential treatment on the platform.
+
+In the future, it could be on interest to run the analysis again to give Beyoncé’s latest album released on March 29, 2024, *COWBOY CARTER*, more time to see how long it lasts on the chart. Another possible idea for future work could be to use a different 
 
 
 \newpage
