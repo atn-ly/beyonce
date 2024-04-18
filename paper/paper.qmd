@@ -67,7 +67,7 @@ Lastly, we collected data on the number of weeks each song spent on the *Billboa
 
 ## Methodology
 
-We analyzed the data in R [@citeR] using the following packages: `arrow` [@arrow], `broom.mixed` [@broommixed], `ggplot2` [@ggplot2], `here` [@here], `janitor` [@janitor], `knitr` [@knitr], `marginaleffects` [@marginaleffects], `modelsummary` [@modelsummary], `rstanarm` [@rstanarm], and `tidyverse` [@tidyverse]. The code used in our analysis was adapted from *Telling Stories with Data* [@rohan].
+We analyzed the data in R [@citeR] using the following packages: `arrow` [@arrow], `broom.mixed` [@broommixed], `ggplot2` [@ggplot2], `here` [@here], `janitor` [@janitor], `knitr` [@knitr], `lintr` [@lintr], `marginaleffects` [@marginaleffects], `modelsummary` [@modelsummary], `rstanarm` [@rstanarm], `styler` [@styler], and `tidyverse` [@tidyverse]. The code used in our analysis was adapted from *Telling Stories with Data* [@rohan].
 
 ## Variables
 
