@@ -122,7 +122,7 @@ The model that we are interested in is:
 y_i|\mu_i,r &\sim \mbox{NegBinom}(\mu_i, r) \\
 \mbox{log}(\mu_i) &= \alpha + \beta \times \mbox{Number of weeks}_i \\
 \alpha &\sim \mbox{Normal}(18, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
+\beta &\sim \mbox{Normal}(0, 2.5)
 \end{align}
 
 Where:
