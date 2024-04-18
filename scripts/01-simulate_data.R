@@ -3,28 +3,33 @@
 # Author: Tam Ly
 # Date: 18 April 2024
 # Contact: annatn.ly@mail.utoronto.ca
-# Pre-requisites: Run 000-install_packages
+# Pre-requisites: Run 00-install_packages
 # Any other information needed? None
 
 
 #### Workspace setup ####
 library(tidyverse)
 
+
 #### Simulate data ####
+#Set seed for reproducibility
 set.seed(302)
 
+#Create simulated dataset
 beyonce_simulation <-
   tibble(
     number_weeks_on_chart = runif(min = 0, max = 20, n = 100) |> round(0),
     number_streams = rpois(n = 100, lambda = 15)
   )
 
+#Change class of number_week_on_chart to integer
 beyonce_simulation <-
   beyonce_simulation |> 
   mutate(
     number_weeks_on_chart = as.integer(number_weeks_on_chart)
     )
 
+#Create a scatterplot of simulated dataset
 beyonce_simulation |>
   ggplot(aes(y = number_streams, x = number_weeks_on_chart)) +
   geom_point() +
@@ -34,6 +39,7 @@ beyonce_simulation |>
   ) +
   theme_classic() +
   scale_fill_brewer(palette = "Set1")
+
 
 #### Test simulated data ####
 #Tests of class:

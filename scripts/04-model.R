@@ -13,8 +13,10 @@ library(tidyverse)
 library(rstanarm)
 library(arrow)
 
+
 #### Read data ####
 beyonce_cleaned <- read_parquet("data/analysis_data/beyonce_cleaned.parquet")
+
 
 ### Model data ####
 beyonce_pois <-
@@ -46,6 +48,7 @@ beyonce_nbinom_default <-
     prior_intercept = normal(location = 0, scale = 2.5, autoscale = TRUE),
     seed = 302
   )
+
 
 #### Save model ####
 saveRDS(

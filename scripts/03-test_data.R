@@ -15,9 +15,11 @@ library(arrow)
 #### Read data ####
 beyonce_cleaned <- read_parquet("data/analysis_data/beyonce_cleaned.parquet")
 
+
 #### Read model ####
 beyonce_pois <- readRDS(file = here::here("models/beyonce_pois.rds"))
 beyonce_nbinom <- readRDS(file = here::here("models/beyonce_nbinom.rds"))
+
 
 #### Test data ####
 #Tests of class:
