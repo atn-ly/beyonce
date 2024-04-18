@@ -78,7 +78,7 @@ There are 4 variables in the dataset that we created:
 3. `spotify_streams` which represents the number of Spotify streams, and
 4. `wks_on_chart` which represents the number of weeks spent on the *Billboard Hot 100*.
 
-To visualize our data, we create a table and graph. @tbl-variables shows a sample of the dataset with all the variables and the first 10 out of 140 observations. Furthermore, @fig-variables show a scatterplot of the data with all 140 observations. We see a positive correlation between the number of Spotify streams and weeks spent on the *Billboard Hot 100*.
+To visualize our data, we create a table and graph. @tbl-variables shows a sample of the dataset with all the variables and the first 5 out of 140 observations. Furthermore, @fig-variables show a scatterplot of the data with all 140 observations. We see a positive correlation between the number of Spotify streams and weeks spent on the *Billboard Hot 100*.
 
 ```{r}
 #| echo: false
@@ -86,10 +86,10 @@ To visualize our data, we create a table and graph. @tbl-variables shows a sampl
 #| message: false
 #| warning: false
 #| label: tbl-variables
-#| tbl-cap: "Sample of the cleaned dataset with the first 10 observations"
+#| tbl-cap: "Sample of the cleaned dataset with the first 5 observations"
 
 beyonce_cleaned |>
-  slice(1:10) |>
+  slice(1:5) |>
   kable(
     col.names = c("Song", "Album", "Spotify Streams", "Weeks on Chart")
   )
@@ -216,7 +216,7 @@ Do artists as big as Beyoncé still care about music charts? Chart success can b
 
 Some weaknesses become apparent in our approach in using Spotify streams as a metric for the popularity of a Beyoncé song. First, one of Beyoncé’s albums, *Lemonade*, was added to Spotify three years after its release. This means that the number of Spotify streams for the songs from this album are underrepresented in our dataset. Furthermore, Spotify numbers are also not immune to industry politics that underlie promotional mechanics. All of the major record labels own a sizable share of Spotify and can give some artists preferential treatment on the platform. For example, Beyoncé is under Sony Music which owns a 2.65% stake in Spotify [@owners]. Lastly, we did not consider that Beyoncé’s older songs have had more time to accumulate streams than her latest work. For instance, *COWBOY CARTER* was just released on March 29, 2024 while *Dangerously in Love* was released on June 20, 2003 [@spotify].
 
-In the future, it could be on interest to run the analysis again to give Beyoncé’s latest album *COWBOY CARTER* more time to see how long it lasts on the chart. We could also standardize the length to accumulate streams such as one year after its release for consistency. Another possible idea for future work could be to use a mix of new and established artists to see if we get the same result.
+In the future, it could be on interest to run the analysis again to give Beyoncé’s latest album, *COWBOY CARTER*, more time to see how long it lasts on the chart. We could also standardize the length to accumulate streams such as one year after its release for consistency. Another possible idea for future work could be to use a mix of new and established artists to see if we get the same result.
 
 
 \newpage
