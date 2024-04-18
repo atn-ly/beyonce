@@ -10,6 +10,9 @@
 #### Workspace setup ####
 library(tidyverse)
 library(arrow)
+library(lintr)
+library(styler)
+library(here)
 
 
 #### Read data ####
@@ -22,17 +25,23 @@ beyonce_nbinom <- readRDS(file = here::here("models/beyonce_nbinom.rds"))
 
 
 #### Test data ####
-#Tests of class:
+# Tests of class:
 beyonce_cleaned$wks_on_chart |> class() == "integer"
 beyonce_cleaned$spotify_streams |> class() == "integer"
 
-#Tests of number of observations:
+# Tests of number of observations:
 beyonce_cleaned$wks_on_chart |> min() >= 0
 beyonce_cleaned$wks_on_chart |> max() <= 52
 beyonce_cleaned$spotify_streams |> min() >= 1
 beyonce_cleaned$spotify_streams |> max() <= 2000000000
 
+
 #### Test model ####
-#Tests of coefficients
+# Tests of coefficients
 between(beyonce_pois$coefficients[1], 0, 20)
 between(beyonce_pois$coefficients[2], 0, 20)
+
+
+#### Style code ####
+lint(filename = here("scripts/03-test_data.R"))
+style_file(path = here("scripts/03-test_data.R"))

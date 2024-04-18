@@ -1,5 +1,6 @@
 #### Preamble ####
-# Purpose: Models number of Spotify streams based on number of weeks on the Billboard Hot 100.
+# Purpose: Models number of Spotify streams based on number of weeks on the
+# Billboard Hot 100.
 # Author: Tam Ly
 # Date: 18 April 2024
 # Contact: annatn.ly@mail.utoronto.ca
@@ -12,6 +13,9 @@
 library(tidyverse)
 library(rstanarm)
 library(arrow)
+library(lintr)
+library(styler)
+library(here)
 
 
 #### Read data ####
@@ -65,3 +69,8 @@ saveRDS(
   beyonce_nbinom_default,
   file = "models/beyonce_nbinom_default.rds"
 )
+
+
+#### Style code ####
+lint(filename = here("scripts/04-model.R"))
+style_file(path = here("scripts/04-model.R"))

@@ -11,16 +11,19 @@
 library(tidyverse)
 library(janitor)
 library(arrow)
+library(lintr)
+library(styler)
+library(here)
 
 
 #### Clean data ####
-#Read in raw data
+# Read in raw data
 beyonce_raw <- read_csv("data/raw_data/beyonce_raw.csv")
 
-#Clean column names using janitor and change classes to integer
+# Clean column names using janitor and change classes to integer
 beyonce_cleaned <-
   beyonce_raw |>
-  clean_names() |> 
+  clean_names() |>
   mutate(
     spotify_streams = as.integer(spotify_streams),
     wks_on_chart = as.integer(wks_on_chart)
@@ -29,3 +32,8 @@ beyonce_cleaned <-
 
 #### Save data ####
 write_parquet(beyonce_cleaned, "data/analysis_data/beyonce_cleaned.parquet")
+
+
+#### Style code ####
+lint(filename = here("scripts/02-data_cleaning.R"))
+style_file(path = here("scripts/02-data_cleaning.R"))
